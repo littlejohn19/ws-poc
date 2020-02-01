@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'wspoc';
+
+  private url = 'http://localhost:3000';
+  socket = io(this.url);
+
+  emit() {
+    this.socket.emit('test', {
+      test: 'test'
+    });
+  }
 }
